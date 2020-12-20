@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("index")
 public class LoginController {
     @GetMapping("blog")
+
     public String login()
     {
         return "blogs";

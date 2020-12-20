@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dany.blog.dao.UsersMapper">
+  <resultMap id="BaseResultMap" type="com.dany.blog.model.Users">
+    <id column="userId" jdbcType="BIGINT" property="userid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="baseinfo" jdbcType="VARCHAR" property="baseinfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userId, username, account, password, baseinfo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from business_users
+    where userId = #{userid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from business_users
+    where userId = #{userid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.dany.blog.model.Users">
+    insert into business_users (userId, username, account, 
+      password, baseinfo)
+    values (#{userid,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{baseinfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dany.blog.model.Users">
+    insert into business_users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="baseinfo != null">
+        baseinfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="baseinfo != null">
+        #{baseinfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dany.blog.model.Users">
+    update business_users
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="baseinfo != null">
+        baseinfo = #{baseinfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dany.blog.model.Users">
+    update business_users
+    set username = #{username,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      baseinfo = #{baseinfo,jdbcType=VARCHAR}
+    where userId = #{userid,jdbcType=BIGINT}
+  </update>
+</mapper>
