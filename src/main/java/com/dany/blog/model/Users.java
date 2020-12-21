@@ -1,5 +1,7 @@
 package com.dany.blog.model;
 
+import java.util.Date;
+
 public class Users {
     private Long userid;
 
@@ -10,6 +12,12 @@ public class Users {
     private String password;
 
     private String baseinfo;
+
+    private Long blogId;
+
+    private Date createTime;
+
+    private Date updateTime;
 
     public Long getUserid() {
         return userid;
@@ -49,5 +57,29 @@ public class Users {
 
     public void setBaseinfo(String baseinfo) {
         this.baseinfo = baseinfo == null ? null : baseinfo.trim();
+    }
+
+    public Long getBlogId() {
+        return blogId;
+    }
+
+    public void setBlogId(Long blogId) {
+        this.blogId = blogId;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

@@ -2,16 +2,17 @@ package com.dany.blog.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("index")
+@RequestMapping("login")
 public class LoginController {
-    @GetMapping("blog")
-
+    @PostMapping("/")
     public String login()
     {
-        return "blogs";
+
+        return "/";
     }
 }
