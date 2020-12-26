@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dany.blog.dao.UsersMapper">
-  <resultMap id="BaseResultMap" type="com.dany.blog.model.Users">
-    <id column="userId" jdbcType="BIGINT" property="userid" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="account" jdbcType="VARCHAR" property="account" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="baseinfo" jdbcType="VARCHAR" property="baseinfo" />
-    <result column="blog_id" jdbcType="BIGINT" property="blogId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.dany.blog.model.Users">
+        <id column="userId" jdbcType="BIGINT" property="userid"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="baseinfo" jdbcType="VARCHAR" property="baseinfo"/>
+        <result column="blog_id" jdbcType="BIGINT" property="blogId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     userId, username, account, password, baseinfo, blog_id, create_time, update_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from business_users
-    where userId = #{userid,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from business_users
+        where userId = #{userid,jdbcType=BIGINT}
+    </select>
+    <select id="selectByAccount" resultType="com.dany.blog.model.Users" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from business_users where account = #{account,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from business_users
     where userId = #{userid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.dany.blog.model.Users">
+    <insert id="insert" parameterType="com.dany.blog.model.Users">
     insert into business_users (userId, username, account, 
       password, baseinfo, blog_id, 
       create_time, update_time)
@@ -32,89 +37,89 @@
       #{password,jdbcType=VARCHAR}, #{baseinfo,jdbcType=VARCHAR}, #{blogId,jdbcType=BIGINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.dany.blog.model.Users">
-    insert into business_users
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        userId,
-      </if>
-      <if test="username != null">
-        username,
-      </if>
-      <if test="account != null">
-        account,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="baseinfo != null">
-        baseinfo,
-      </if>
-      <if test="blogId != null">
-        blog_id,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        #{userid,jdbcType=BIGINT},
-      </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="account != null">
-        #{account,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="baseinfo != null">
-        #{baseinfo,jdbcType=VARCHAR},
-      </if>
-      <if test="blogId != null">
-        #{blogId,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dany.blog.model.Users">
-    update business_users
-    <set>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="account != null">
-        account = #{account,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="baseinfo != null">
-        baseinfo = #{baseinfo,jdbcType=VARCHAR},
-      </if>
-      <if test="blogId != null">
-        blog_id = #{blogId,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where userId = #{userid,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.dany.blog.model.Users">
+    <insert id="insertSelective" parameterType="com.dany.blog.model.Users">
+        insert into business_users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                userId,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="account != null">
+                account,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="baseinfo != null">
+                baseinfo,
+            </if>
+            <if test="blogId != null">
+                blog_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                #{userid,jdbcType=BIGINT},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="account != null">
+                #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="baseinfo != null">
+                #{baseinfo,jdbcType=VARCHAR},
+            </if>
+            <if test="blogId != null">
+                #{blogId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.dany.blog.model.Users">
+        update business_users
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="account != null">
+                account = #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="baseinfo != null">
+                baseinfo = #{baseinfo,jdbcType=VARCHAR},
+            </if>
+            <if test="blogId != null">
+                blog_id = #{blogId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where userId = #{userid,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.dany.blog.model.Users">
     update business_users
     set username = #{username,jdbcType=VARCHAR},
       account = #{account,jdbcType=VARCHAR},
