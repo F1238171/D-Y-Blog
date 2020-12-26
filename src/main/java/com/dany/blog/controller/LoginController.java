@@ -14,7 +14,6 @@ public class LoginController {
     @ApiOperation(value="登录",httpMethod = "POST")
     //说明一组参数
     @ApiImplicitParams({
-
             @ApiImplicitParam(value = "用户名",name="username",type = "query",dataType = "String",example = "dlzz",required = true),
             @ApiImplicitParam(value = "密码",name = "password",type = "query",dataType = "String",example = "dlzz",
                     required = true)
