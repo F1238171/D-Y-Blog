@@ -41,7 +41,21 @@
         </javaClientGenerator>
 
         <!-- 通讯录人员表 -->
-        <table schema="blog" tableName="business_users" domainObjectName="Users"
+        <table schema="blog" tableName="business_article" domainObjectName="Articles"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+        <table schema="blog" tableName="business_blogs" domainObjectName="Blogs"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+        <table schema="blog" tableName="relationship_blog_article" domainObjectName="Blog_Article"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

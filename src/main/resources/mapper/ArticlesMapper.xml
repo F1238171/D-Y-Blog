@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dany.blog.dao.ArticlesMapper">
+  <resultMap id="BaseResultMap" type="com.dany.blog.model.Articles">
+    <id column="article_id" jdbcType="BIGINT" property="articleId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="flow" jdbcType="BIGINT" property="flow" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_datetime" jdbcType="TIMESTAMP" property="updateDatetime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.dany.blog.model.Articles">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    article_id, title, comment, flow, create_time, update_datetime
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from business_article
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from business_article
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.dany.blog.model.Articles">
+    insert into business_article (article_id, title, comment, 
+      flow, create_time, update_datetime, 
+      content)
+    values (#{articleId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
+      #{flow,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateDatetime,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dany.blog.model.Articles">
+    insert into business_article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="articleId != null">
+        article_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="flow != null">
+        flow,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="articleId != null">
+        #{articleId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="flow != null">
+        #{flow,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDatetime != null">
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dany.blog.model.Articles">
+    update business_article
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="flow != null">
+        flow = #{flow,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDatetime != null">
+        update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dany.blog.model.Articles">
+    update business_article
+    set title = #{title,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
+      flow = #{flow,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dany.blog.model.Articles">
+    update business_article
+    set title = #{title,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
+      flow = #{flow,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_datetime = #{updateDatetime,jdbcType=TIMESTAMP}
+    where article_id = #{articleId,jdbcType=BIGINT}
+  </update>
+</mapper>

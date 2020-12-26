@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dany.blog.dao.BlogsMapper">
+  <resultMap id="BaseResultMap" type="com.dany.blog.model.Blogs">
+    <id column="blog_id" jdbcType="BIGINT" property="blogId" />
+    <result column="blog_desc" jdbcType="VARCHAR" property="blogDesc" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    blog_id, blog_desc, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from business_blogs
+    where blog_id = #{blogId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from business_blogs
+    where blog_id = #{blogId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.dany.blog.model.Blogs">
+    insert into business_blogs (blog_id, blog_desc, create_time, 
+      update_time)
+    values (#{blogId,jdbcType=BIGINT}, #{blogDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dany.blog.model.Blogs">
+    insert into business_blogs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="blogId != null">
+        blog_id,
+      </if>
+      <if test="blogDesc != null">
+        blog_desc,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="blogId != null">
+        #{blogId,jdbcType=BIGINT},
+      </if>
+      <if test="blogDesc != null">
+        #{blogDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dany.blog.model.Blogs">
+    update business_blogs
+    <set>
+      <if test="blogDesc != null">
+        blog_desc = #{blogDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where blog_id = #{blogId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dany.blog.model.Blogs">
+    update business_blogs
+    set blog_desc = #{blogDesc,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where blog_id = #{blogId,jdbcType=BIGINT}
+  </update>
+</mapper>
