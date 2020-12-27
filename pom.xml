@@ -74,6 +74,11 @@
             <optional>true</optional>
             <version>2.2.1.RELEASE</version><!-- 防止将devtools依赖传递到其他模块中 -->
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

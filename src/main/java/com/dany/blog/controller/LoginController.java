@@ -29,7 +29,7 @@ public class LoginController {
     @ApiResponses({
             @ApiResponse(code=200,message = "登录成功"),
     })
-    public ResultResponse<User> login(@RequestBody User user)
+    public  ResultResponse<User> login(@RequestBody User user)
     {
         Users users = usersMapper.selectByAccount(user.username);
         String result="用户名或密码错误";

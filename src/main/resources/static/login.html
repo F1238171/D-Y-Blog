@@ -22,7 +22,7 @@
             username: $("#username").val(),
             password: $("#password").val()
         }
-        invokeService("post", data, "/login/user", function (data) {
+        invokeService("post", data, "login/user", function (data) {
             if (data.code === 200) {
                 alert(data.data.username + "登录成功");
             } else

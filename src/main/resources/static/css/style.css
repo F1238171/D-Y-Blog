@@ -1,0 +1,87 @@
+body{
+    background-repeat: no-repeat;
+}
+#box{
+    height: 100%;
+    width: 100%;
+    border-radius: 40px;
+    margin-top:100px;
+    margin-left: 100px;
+}
+.word1{
+    list-style: none;
+    font-family: 楷体;
+    color: #e50a0a;
+    font-size: 40px;
+    position: relative;
+    top: 10px;
+    left: 200px;
+}
+.word2{
+    list-style: none;
+    font-family: 楷体;
+    color: #e50a0a;
+    font-size: 40px;
+    position: relative;
+    top: 10px;
+    left: 300px;
+}
+.img{
+    position: relative;
+    left: 400px;
+    top: -300px;
+}
+.login{
+    position: relative;
+    left: 750px;
+    top:-600px;
+    float: left;
+    width: 400px;
+    height: 340px;
+    border: 1px solid black;
+    border-radius: 30px;
+
+
+}
+.login h1{
+    margin-top: 10px;
+    margin-left: 133px;
+    margin-right: 133px;
+    width: 133px;
+    height: 50px;
+    line-height: 50px;
+    font-family: 新宋体;
+    color: #ef920a;
+}
+.login ul li{
+    list-style: none;
+    padding-top: 20px;
+    margin-bottom: 10px;
+}
+.login p{
+    margin-top: 0;
+    margin-left: 30px;
+}
+.login input{
+    height: 30px;
+    width: 320px;
+
+}
+.login a{
+    text-decoration: none;
+}
+.login a:hover{
+    background: #ef920a;
+}
+#botton{
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-bottom: 30px;
+    width: 325px;
+    font-size: 20px;
+    font-family: 楷体;
+    border-radius: 15px;
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+}
+
