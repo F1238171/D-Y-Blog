@@ -2,11 +2,15 @@ package com.dany.blog.controller;
 
 
 import com.dany.blog.dao.UsersMapper;
+import com.dany.blog.model.ResultResponse;
 import com.dany.blog.model.Users;
 import com.dany.blog.model.login.User;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.xml.transform.Result;
 
 @RestController
 @RequestMapping("login")
@@ -25,12 +29,15 @@ public class LoginController {
     @ApiResponses({
             @ApiResponse(code=200,message = "登录成功"),
     })
-    public String login(@RequestParam String username,@RequestParam String password)
+    public ResultResponse<User> login(@RequestBody User user)
     {
-        Users users = usersMapper.selectByAccount(username);
+        Users users = usersMapper.selectByAccount(user.username);
         String result="用户名或密码错误";
-        if (users!=null)
-            result = users.getPassword().equals(password)?"登录成功":"用户名或密码失败";
-        return result;
+        Integer code = 700;
+        if (users!=null) {
+            result = users.getPassword().equals(user.password) ? "登录成功" : "用户名或密码失败";
+            code = 200;
+        }
+        return new ResultResponse<User>(code,user);
     }
 }

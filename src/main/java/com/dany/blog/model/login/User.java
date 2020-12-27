@@ -8,13 +8,14 @@ import java.io.Serializable;
 @Data
 public class User implements Serializable {
 
-    @ApiModelProperty(name="username",value = "用户名",required = true,example = "dlzz2013",dataType = "string")
-    String username;
-    @ApiModelProperty(name="password",value = "密码",required = true,example = "dlzz2013",dataType = "string")
-    String password;
+    @ApiModelProperty(name = "username", value = "用户名", required = true, example = "dlzz2013", dataType = "string")
+    public String username;
+    @ApiModelProperty(name = "password", value = "密码", required = true, example = "dlzz2013", dataType = "string")
+    public String password;
 
     public User(String username, String password) {
-        this.username=username;
-        this.password=password;
+        this.username = username;
+        this.password = password;
     }
+
 }
